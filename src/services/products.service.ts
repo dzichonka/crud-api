@@ -3,6 +3,7 @@ import type { Product } from '../types/product.js';
 import crypto from 'node:crypto';
 
 export function getProductsService() {
+  //throw new Error('500'); // for testing 500
   return products;
 }
 
