@@ -4,7 +4,6 @@ import {
   getAllProducts,
   getProductById,
 } from '../services/products.service.js';
-import { validate as isUuid } from 'uuid';
 
 export async function getProducts(
   request: FastifyRequest,
@@ -19,19 +18,20 @@ export async function getProduct(
 ) {
   const { productId } = request.params;
 
-  if (!isUuid(productId)) {
-    return reply.code(400).send({
-      message: 'Invalid productId',
-    });
-  }
-
   const product = getProductById(productId);
 
   if (!product) {
     return reply.code(404).send({
-      message: 'Product not found',
+      message: 'product not found',
     });
   }
 
   return reply.code(200).send(product);
+}
+
+export async function postProduct(
+  request: FastifyRequest,
+  reply: FastifyReply,
+) {
+  return reply.code(201).send(request.body);
 }
