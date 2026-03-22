@@ -22,7 +22,8 @@
   "scripts": {
     "start:dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start:prod": "build && node dist/server.js"
+    "start:prod": "build && node dist/server.js",
+    "start:multi": "tsx watch src/multi/cluster.ts"
   },
   "dependencies": {
     "@types/uuid": "^10.0.0",

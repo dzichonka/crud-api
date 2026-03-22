@@ -15,7 +15,10 @@ export async function getProducts(
   reply: FastifyReply,
 ) {
   reply.code(200);
-  logSuccess(`Status: ${reply.statusCode}. All products`, getProductsService());
+  logSuccess(
+    `Status: ${reply.statusCode}. All products `,
+    getProductsService(),
+  );
   return reply.send(getProductsService());
 }
 
