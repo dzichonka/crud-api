@@ -1,4 +1,4 @@
-export const getProductsSchema = {
+export const productsSchema = {
   params: {
     type: 'object',
     properties: {},
@@ -6,7 +6,7 @@ export const getProductsSchema = {
   },
 };
 
-export const getProductSchema = {
+export const productIdSchema = {
   params: {
     type: 'object',
     properties: {
@@ -16,7 +16,7 @@ export const getProductSchema = {
   },
 };
 
-export const postProductSchema = {
+export const productBodySchema = {
   body: {
     type: 'object',
     properties: {
