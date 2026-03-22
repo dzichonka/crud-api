@@ -1,15 +1,13 @@
 import { app } from './app.js';
-import { color } from './utils/color.js';
+import { logError, logSuccess } from './utils/logger.js';
 
 const start = async () => {
   const fastify = await app();
   try {
     await fastify.listen({ port: 3000 });
-    console.log(
-      `${color(32, 'Server running at http://localhost:3000/api/products')}`,
-    );
+    logSuccess('Server running at http://localhost:3000/api/products');
   } catch (err) {
-    console.error(err);
+    logError('Server failed to start');
     process.exit(1);
   }
 };

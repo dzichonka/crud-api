@@ -8,12 +8,15 @@ import {
   deleteProductService,
 } from '../services/products.service.js';
 import type { Product } from '../types/product.js';
+import { logError, logSuccess } from '../utils/logger.js';
 
 export async function getProducts(
   request: FastifyRequest,
   reply: FastifyReply,
 ) {
-  return reply.code(200).send(getProductsService());
+  reply.code(200);
+  logSuccess(`Status: ${reply.statusCode}. All products`, getProductsService());
+  return reply.send(getProductsService());
 }
 
 export async function getProduct(
@@ -21,16 +24,21 @@ export async function getProduct(
   reply: FastifyReply,
 ) {
   const { productId } = request.params;
-
   const product = getProductService(productId);
 
   if (!product) {
-    return reply.code(404).send({
+    reply.code(404);
+    logError(`Product with id ${productId} not found`);
+    return reply.send({
       message: 'product not found',
     });
   }
-
-  return reply.code(200).send(product);
+  reply.code(200);
+  logSuccess(
+    `Status: ${reply.statusCode}. Product with id ${productId}`,
+    product,
+  );
+  return reply.send(product);
 }
 
 export async function postProduct(
@@ -38,7 +46,10 @@ export async function postProduct(
   reply: FastifyReply,
 ) {
   const product = postProductService(request.body);
-  return reply.code(201).send(product);
+
+  reply.code(201);
+  logSuccess(`Status: ${reply.statusCode}. Created new product`, product);
+  return reply.send(product);
 }
 
 export async function putProduct(
@@ -47,11 +58,15 @@ export async function putProduct(
 ) {
   const product = putProductService(request.params.productId, request.body);
   if (!product) {
-    return reply.code(404).send({
+    reply.code(404);
+    logError(`Product with id ${request.params.productId} not found`);
+    return reply.send({
       message: 'product not found',
     });
   }
-  return reply.code(200).send(product);
+  reply.code(200);
+  logSuccess(`Status: ${reply.statusCode}`, product);
+  return reply.send(product);
 }
 
 export async function deleteProduct(
@@ -62,9 +77,13 @@ export async function deleteProduct(
   const isDeleted = deleteProductService(productId);
 
   if (!isDeleted) {
-    return reply.code(404).send({
+    reply.code(404);
+    logError(`Product with id ${productId} not found`);
+    return reply.send({
       message: 'product not found',
     });
   }
-  return reply.code(204).send();
+  reply.code(204);
+  logSuccess(`Status: ${reply.statusCode}. Product deleted successfully`);
+  return reply.send();
 }
