@@ -22,7 +22,7 @@ export const productBodySchema = {
     properties: {
       name: { type: 'string' },
       description: { type: 'string' },
-      price: { type: 'number', minimum: 0 },
+      price: { type: 'number', exclusiveMinimum: 0 },
       category: { type: 'string' },
       inStock: { type: 'boolean' },
     },
