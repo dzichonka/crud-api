@@ -16,7 +16,7 @@ export async function getProducts(
 ) {
   reply.code(200);
   logSuccess(
-    `Status: ${reply.statusCode}. All products `,
+    `Port: ${request.socket.localPort}\nStatus: ${reply.statusCode}\nAll products`,
     getProductsService(),
   );
   return reply.send(getProductsService());
@@ -38,7 +38,7 @@ export async function getProduct(
   }
   reply.code(200);
   logSuccess(
-    `Status: ${reply.statusCode}. Product with id ${productId}`,
+    `Port: ${request.socket.localPort}\nStatus: ${reply.statusCode}\nProduct with id ${productId}`,
     product,
   );
   return reply.send(product);
@@ -51,7 +51,10 @@ export async function postProduct(
   const product = postProductService(request.body);
 
   reply.code(201);
-  logSuccess(`Status: ${reply.statusCode}. Created new product`, product);
+  logSuccess(
+    `Port: ${request.socket.localPort}\nStatus: ${reply.statusCode}\nCreated new product`,
+    product,
+  );
   return reply.send(product);
 }
 
@@ -68,7 +71,10 @@ export async function putProduct(
     });
   }
   reply.code(200);
-  logSuccess(`Status: ${reply.statusCode}`, product);
+  logSuccess(
+    `Port: ${request.socket.localPort}\nStatus: ${reply.statusCode}\nUpdated product with id ${request.params.productId}`,
+    product,
+  );
   return reply.send(product);
 }
 
@@ -87,6 +93,8 @@ export async function deleteProduct(
     });
   }
   reply.code(204);
-  logSuccess(`Status: ${reply.statusCode}. Product deleted successfully`);
+  logSuccess(
+    `Port: ${request.socket.localPort}\nStatus: ${reply.statusCode}\nProduct deleted successfully`,
+  );
   return reply.send();
 }

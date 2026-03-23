@@ -23,7 +23,8 @@
     "start:dev": "tsx watch src/server.ts",
     "build": "tsc",
     "start:prod": "build && node dist/server.js",
-    "start:multi": "tsx watch src/multi/cluster.ts"
+    "start:multi": "tsx watch src/multi/cluster.ts",
+    "test": "vitest"
   },
   "dependencies": {
     "@types/uuid": "^10.0.0",
@@ -37,6 +38,7 @@
     "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
     "tsx": "^4.21.0",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.0"
   }
 }

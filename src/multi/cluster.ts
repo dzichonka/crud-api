@@ -91,5 +91,5 @@ if (cluster.isPrimary) {
 
   loadBalancer(BASE_PORT, workersCount);
 } else {
-  import('./workerServer.js');
+  import('../server.js');
 }

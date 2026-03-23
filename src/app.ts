@@ -12,7 +12,6 @@ export async function app() {
     logger: true,
   });
 
-  // 404
   fastify.setNotFoundHandler((request: FastifyRequest, reply: FastifyReply) => {
     reply.code(404);
     logError(`Route '${request.url}' not found.`);
@@ -22,7 +21,6 @@ export async function app() {
     });
   });
 
-  // 500
   fastify.setErrorHandler(
     (error: FastifyError, request: FastifyRequest, reply: FastifyReply) => {
       const statusCode = error.statusCode || 500;

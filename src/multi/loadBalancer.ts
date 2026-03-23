@@ -6,7 +6,7 @@ export function loadBalancer(basePort: number, workersCount: number) {
 
   http
     .createServer((req, res) => {
-      const targetPort = basePort + 1 + (current % workersCount); // 4001, 4002, 4003
+      const targetPort = basePort + 1 + (current % workersCount);
       current++;
 
       const proxy = http.request(

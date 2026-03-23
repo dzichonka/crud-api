@@ -7,6 +7,10 @@ Simple CRUD API for managing products, built with **Fastify** and **Node.js**.
 ## 🚀 Installation
 
 ```bash
+git switch develop
+```
+
+```bash
 npm install
 ```
 
@@ -51,12 +55,30 @@ npm run start:prod
 
 ---
 
+### Vitest
+
+```bash
+npm run test
+```
+
+---
+
+### Horizontal scaling
+
+```bash
+npm run start:multi
+```
+
+---
+
 ## 📦 Available scripts
 
 ```json
-"start:dev": "tsx watch src/server.ts",
-"build": "tsc",
-"start:prod": "build && node dist/server.js"
+    "start:dev": "tsx watch src/server.ts",
+    "build": "tsc",
+    "start:prod": "build && node dist/server.js",
+    "start:multi": "tsx watch src/multi/cluster.ts",
+    "test": "vitest"
 ```
 
 ---
