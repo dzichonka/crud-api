@@ -49,7 +49,6 @@ Uses `tsx watch` for hot reload.
 ### Production mode
 
 ```bash
-npm run build
 npm run start:prod
 ```
 
@@ -76,7 +75,7 @@ npm run start:multi
 ```json
     "start:dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start:prod": "build && node dist/server.js",
+    "start:prod": "tsc && node dist/server.js",
     "start:multi": "tsx watch src/multi/cluster.ts",
     "test": "vitest"
 ```
